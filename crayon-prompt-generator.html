@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🖍️ クレヨン画プロンプトジェネレーター（無料）</title>
+
+<style>
+body {
+  font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  background: #fdf6f8;
+  padding: 20px;
+}
+.container {
+  max-width: 960px;
+  margin: auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+h1, h2 {
+  text-align: center;
+}
+button {
+  padding: 12px 24px;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #ff8fab;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover {
+  background: #ff7096;
+}
+pre {
+  background: #f0f0f0;
+  padding: 15px;
+  border-radius: 8px;
+  white-space: pre-wrap;
+}
+.notice {
+  background: #fff0f5;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 30px 0;
+}
+.copy-msg {
+  text-align: center;
+  color: #ff7096;
+  display: none;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  vertical-align: top;
+}
+th {
+  background: #ff8fab;
+  color: white;
+}
+a {
+  color: #ff7096;
+  font-weight: bold;
+  text-decoration: none;
+}
+.badge {
+  background: #ffe0ea;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+.small {
+  font-size: 14px;
+  color: #555;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>🖍️ クレヨン画プロンプトジェネレーター（無料）</h1>
+<p style="text-align:center;">
+ボタンを押して文章を作り、<br>
+そのまま下の画像生成AIに貼り付けるだけで使えます。<br>
+ネコ, イヌ, クマ, ウサギ, ハムスターのイラストでランダムに作成できます。
+AIにより異なるのでプロンプト以外の動物も生成するともあります。
+</p>
+
+<hr>
+
+<h2>① プロンプトを作る</h2>
+
+<div style="text-align:center;">
+<button onclick="generatePrompt()">🍫 プロンプトを生成</button>
+<button onclick="copyPrompt()">📋 コピー</button>
+</div>
+
+<pre id="output"></pre>
+<p id="copyMsg" class="copy-msg">✅ コピーしました</p>
+
+<div class="notice">
+<h3>② 次にやること</h3>
+<p>
+コピーした文章を、<br>
+<strong>このページ下にある画像生成AIサイトの入力欄に貼り付けてください。</p>※ 画像を生成するには、
+各画像生成AIサービスに ご自身のアカウントでログインする必要があります。<br>
+
+本ページは「画像生成用の文章（プロンプト）」を作るツールです。<br>
+画像生成自体は、下に掲載している各サービス上で行ってください。</strong>
+</p>
+</div>
+
+<h2>③ 画像生成AIサイト一覧</h2>
+
+<table>
+<tr>
+<th>サービス</th>
+<th>ログイン方法</th>
+<th>特徴</th>
+<th>リンク</th>
+</tr>
+
+<tr>
+<td>ChatGPT <span class="badge">画像生成</span></td>
+<td>Googleアカウント / メール</td>
+<td>日本語OK・相談しながら作れる</td>
+<td><a href="https://chat.openai.com/" target="_blank">開く</a></td>
+</tr>
+
+<tr>
+<td>Gemini <span class="badge">画像生成</span></td>
+<td>Googleアカウントのみ</td>
+<td>シンプルで初心者向け</td>
+<td><a href="https://gemini.google.com/" target="_blank">開く</a></td>
+</tr>
+
+<tr>
+<td>Canva</td>
+<td>Google / メール</td>
+<td>操作が直感的・デザイン調整しやすい</td>
+<td><a href="https://www.canva.com/" target="_blank">開く</a></td>
+</tr>
+
+<tr>
+<td>Bing Image Creator</td>
+<td>Microsoftアカウント</td>
+<td>DALL·E系・日本語対応</td>
+<td><a href="https://www.bing.com/images/create" target="_blank">開く</a></td>
+</tr>
+
+<tr>
+<td>Leonardo AI（英語表示）</td>
+<td>Google / メール</td>
+<td>イラスト特化・作風調整が豊富</td>
+<td><a href="https://leonardo.ai/" target="_blank">開く</a></td>
+</tr>
+
+<tr>
+<td>Playground AI（英語表示）</td>
+<td>Googleアカウント</td>
+<td>Stable Diffusion系</td>
+<td><a href="https://playgroundai.com/" target="_blank">開く</a></td>
+</tr>
+</table>
+
+<p class="small">
+※ 商用利用・無料枠は各サービスの規約をご確認ください。
+</p>
+
+<hr>
+
+<p style="text-align:center;">
+🔒 <strong>有料版では</strong><br>
+本ツールは、今後のアップデート検討のため、
+ご要望・アイデア募集用に「マシュマロ」を設置しています。<br>
+
+<a href="https://marshmallow-qa.com/wpbtly9oc08dv3h?t=oLN0WG&utm_medium=url_text&utm_source=promotion" onclick="window.open('https://marshmallow-qa.com/wpbtly9oc08dv3h?t=oLN0WG&utm_medium=url_text&utm_source=promotion','_blank'); return false;">sapomomoのマシュマロ</a><br>
+・機能追加のアイデア<br>
+・テーマやバリエーションの希望
+などを中心にお送りください。<br>
+
+無料配布のツールのため、
+使い方の質問・不具合報告には対応していません。
+</p>
+
+</div>
+
+<script>
+const styles = [
+  "Cute crayon drawing style illustration on textured paper, children's book art, warm wax crayon texture, pastel colors, soft lighting."
+];
+
+const animals = ["ネコ", "イヌ", "クマ", "ウサギ", "ハムスター"];
+const actions = [
+  "ハート型のチョコレートを持っている",
+  "チョコレートを作っている",
+  "プレゼントを渡している",
+  "照れながらハートを抱えている"
+];
+const places = [
+  "バレンタインの飾りつけがされた部屋",
+  "やさしい色合いの室内"
+];
+
+function rand(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function generatePrompt() {
+  const prompt = `【Style】
+${rand(styles)}
+
+【Content】
+A cute crayon illustration of animals celebrating Valentine’s Day.
+The ${rand(animals)} are ${rand(actions)}.
+The scene is set in a ${rand(places)}.
+Soft lighting, gentle and heartwarming atmosphere.`;
+
+  document.getElementById("output").textContent = prompt;
+  document.getElementById("copyMsg").style.display = "none";
+}
+
+function copyPrompt() {
+  const text = document.getElementById("output").textContent;
+  if (!text) return;
+  navigator.clipboard.writeText(text).then(() => {
+    const msg = document.getElementById("copyMsg");
+    msg.style.display = "block";
+    setTimeout(() => msg.style.display = "none", 2000);
+  });
+}
+</script>
+
+</body>
+</html>
